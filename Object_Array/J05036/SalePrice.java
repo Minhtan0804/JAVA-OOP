@@ -1,0 +1,31 @@
+package Object_Array.J05036;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class SalePrice {
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private int ID;
+    private String productName;
+    private String unitOfProduct;
+    private double purchasePrice;
+    private double quantityProduct;
+    private double transferFee;
+    private double intoMoney;
+    private double sellPrice;
+
+    public SalePrice(String productName, String unitOfProduct, double purchasePrice, double quantityProduct) {
+        this.ID = count.incrementAndGet();
+        this.productName = productName;
+        this.unitOfProduct = unitOfProduct;
+        this.purchasePrice = purchasePrice;
+        this.quantityProduct = quantityProduct;
+        this.transferFee = Math.round((purchasePrice * quantityProduct) * 0.05);
+        this.intoMoney = Math.round((purchasePrice * quantityProduct) * 1.05);
+        this.sellPrice = Math.round(((purchasePrice * quantityProduct) * 1.05) * 1.02);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("MH%02d %s %s %.0f %.0f %.0f", this.ID, this.productName, this.unitOfProduct, this.transferFee, this.intoMoney, this.sellPrice);
+    }
+}
