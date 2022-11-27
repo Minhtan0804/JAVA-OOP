@@ -1,6 +1,6 @@
-package Class_and_Object.J04021;
+package Class_and_Object.J07009;
 
-import java.util.*;
+import java.util.TreeSet;
 
 public class IntSet {
     private final int[] arr;
@@ -9,13 +9,15 @@ public class IntSet {
         this.arr = arr;
     }
 
-    public IntSet union(IntSet o) {
+    public IntSet intersection(IntSet o) {
         TreeSet<Integer> mySet = new TreeSet<>();
+        TreeSet<Integer> result = new TreeSet<>();
         for (int i : arr)
             mySet.add(i);
         for (int i : o.arr)
-            mySet.add(i);
-        return new IntSet(mySet.stream().mapToInt(Integer::intValue).toArray());
+            if (mySet.contains(i))
+                result.add(i);
+        return new IntSet(result.stream().mapToInt(Integer::intValue).toArray());
     }
 
     @Override
