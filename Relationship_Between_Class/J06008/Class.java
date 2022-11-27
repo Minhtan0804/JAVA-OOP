@@ -10,4 +10,13 @@ public class Class {
         this.subject = subject;
         this.time = time;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    @Override
+    public String toString() {
+        return this.subject + " " + this.time + "\n";
+    }
 }
