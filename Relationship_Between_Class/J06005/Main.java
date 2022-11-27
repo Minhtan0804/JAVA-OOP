@@ -1,9 +1,6 @@
 package Relationship_Between_Class.J06005;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -24,20 +21,9 @@ public class Main {
         }
 
         int v = Integer.parseInt(sc.nextLine());
-        ArrayList<Invoice> invoiceArrayList = new ArrayList<>();
         for (int i = 0; i < v; i++) {
-            Invoice invoice = new Invoice(sc.nextLine());
-            invoiceArrayList.add(invoice);
+            Invoice invoice = new Invoice(clientMap.get(sc.next()), productMap.get(sc.next()), sc.nextInt());
+            System.out.println(invoice);
         }
-
-        for (Invoice invoice : invoiceArrayList) {
-            System.out.print(invoice);
-            System.out.print(clientMap.get(invoice.getClientID()));
-            Product product = productMap.get(invoice.getProductID());
-            int price = product.getSellPrice() * invoice.getQuantity();
-            System.out.println(product + String.format("%d %d",invoice.getQuantity(), price));
-        }
-
-
     }
 }

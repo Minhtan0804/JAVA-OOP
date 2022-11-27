@@ -23,19 +23,13 @@ public class Main {
         int v = Integer.parseInt(sc.nextLine());
         ArrayList<Invoice> invoiceArrayList = new ArrayList<>();
         for (int i = 0; i < v; i++) {
-            Invoice invoice = new Invoice(sc.nextLine());
-            invoice.setProfit(productMap.get(invoice.getProductID()).getUnitProfit());
+            Invoice invoice = new Invoice(clientMap.get(sc.next()), productMap.get(sc.next()), sc.nextInt());
             invoiceArrayList.add(invoice);
         }
 
         Collections.sort(invoiceArrayList);
 
-        for (Invoice invoice : invoiceArrayList) {
-            System.out.print(invoice);
-            System.out.print(clientMap.get(invoice.getClientID()));
-            Product product = productMap.get(invoice.getProductID());
-            int price = product.getSellPrice() * invoice.getQuantity();
-            System.out.println(product + String.format("%d %d %d",invoice.getQuantity(), price, invoice.getProfit()));
-        }
+        for (Invoice invoice : invoiceArrayList)
+            System.out.println(invoice);
     }
 }

@@ -23,13 +23,20 @@ public class Product {
         return productID;
     }
 
-    public int getSellPrice() {
-        return sellPrice;
+    public String getProductName() {
+        return productName;
     }
 
-    @Override
-    public String toString() {
-        return this.productName + " " + this.unit + String.format(" %d %d ", this.purchasePrice, this.sellPrice);
+    public String getUnit() {
+        return unit;
+    }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public int getSellPrice() {
+        return sellPrice;
     }
 }
 

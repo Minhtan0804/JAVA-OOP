@@ -1,9 +1,7 @@
 package Relationship_Between_Class.J06003;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,8 +17,11 @@ public class Main {
         }
 
         Map<Integer, Exercise> exerciseMap = new HashMap<>();
-        for (int i = 0; i < m; i++) {
+        for (int i = 1; i <= m; i++) {
             Exercise exercise = new Exercise(sc.nextLine());
+            exercise.setStudentList(studentArrayList.stream()
+                    .filter(x -> x.getGroupID() == exercise.getGroupID())
+                    .collect(Collectors.toList()));
             exerciseMap.put(exercise.getGroupID(), exercise);
         }
 
@@ -28,12 +29,11 @@ public class Main {
         for (int i = 0; i < Q; i++) {
             int query = Integer.parseInt(sc.nextLine());
             System.out.println("DANH SACH NHOM " + query + ":");
-            for (Student student : studentArrayList) {
-                if (student.getGroupID() == query)
-                    System.out.println(student);
-            }
+            Exercise exercise = exerciseMap.get(query);
+            for (Student student : exercise.getStudentList())
+                System.out.println(student);
 
-            System.out.println(exerciseMap.get(query));
+            System.out.println(exercise);
         }
     }
 }

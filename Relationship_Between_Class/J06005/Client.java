@@ -12,6 +12,7 @@ public class Client {
     private Date dateOfBirth;
     private String address;
 
+
     public Client(String clientName, String gender, String dateOfBirth, String address) throws Exception {
         this.clientID = String.format("KH%03d", count.incrementAndGet());
         this.clientName = clientName;
@@ -25,8 +26,11 @@ public class Client {
         return clientID;
     }
 
-    @Override
-    public String toString() {
-        return this.clientName + " " + this.address + " ";
+    public String getClientName() {
+        return clientName;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

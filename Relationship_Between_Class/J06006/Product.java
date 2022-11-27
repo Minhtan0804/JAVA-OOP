@@ -9,6 +9,7 @@ public class Product {
     private String unit;
     private int purchasePrice;
     private int sellPrice;
+
     private int unitProfit;
 
 
@@ -25,17 +26,20 @@ public class Product {
         return productID;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
     public int getSellPrice() {
         return sellPrice;
     }
 
     public int getUnitProfit() {
         return unitProfit;
-    }
-
-    @Override
-    public String toString() {
-        return this.productName + " ";
     }
 }
 

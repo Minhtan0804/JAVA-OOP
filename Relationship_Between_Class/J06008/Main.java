@@ -9,32 +9,22 @@ public class Main {
         int n = Integer.parseInt(sc.nextLine());
         Map<String, Subject> subjectMap = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            Subject subject = new Subject(sc.nextLine());
+            Subject subject = new Subject(sc.next(), sc.next());
             subjectMap.put(subject.getSubjectID(), subject);
         }
 
         int m = Integer.parseInt(sc.nextLine());
         Map<String, Teacher> teacherMap = new HashMap<>();
         for (int i = 0; i < m; i++) {
-            Teacher teacher = new Teacher(sc.nextLine());
+            Teacher teacher = new Teacher(sc.next(), sc.next());
             teacherMap.put(teacher.getTeacherID(), teacher);
         }
 
-        int t = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < t; i++) {
-            String[] str = sc.nextLine().split("\\s+");
-            String teacherID = str[0];
-            String subjectID = str[1];
-            double hour = Double.parseDouble(str[2]);
-
-            Teacher teacher = teacherMap.get(teacherID);
-            teacher.setHour(teacher.getHour() + hour);
-
-            teacherMap.put(teacherID, teacher);
+        int p = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < p; i++) {
+            Teacher teacher = teacherMap.get(sc.next());
+            teacher.setSubjectList(subjectMap.get(sc.next()));
+            Subject subject = subjectMap.get(sc.next());
         }
-        SortedSet<String> set = new TreeSet<>(teacherMap.keySet());
-
-        for (String key : set)
-            System.out.println(teacherMap.get(key));
     }
 }

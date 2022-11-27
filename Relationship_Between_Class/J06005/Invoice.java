@@ -5,32 +5,29 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Invoice {
     private static final AtomicInteger count = new AtomicInteger(0);
     private String invoiceID;
-    private String clientID;
-    private String productID;
+    private Client client;
+    private Product product;
     private int quantity;
 
-    public Invoice(String invoice) {
+    public Invoice(Client client, Product product, int quantity) {
         this.invoiceID = String.format("HD%03d", count.incrementAndGet());
-        String[] str = invoice.split("\\s+");
-        this.clientID = str[0];
-        this.productID = str[1];
-        this.quantity = Integer.parseInt(str[2]);
+        this.client = client;
+        this.product = product;
+        this.quantity = quantity;
     }
 
-    public String getClientID() {
-        return clientID;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
 
     @Override
     public String toString() {
-        return this.invoiceID + " ";
+        return String.format("%s %s %s %s %s %d %d %d %d",
+                invoiceID,
+                client.getClientName(),
+                client.getAddress(),
+                product.getProductName(),
+                product.getUnit(),
+                product.getPurchasePrice(),
+                product.getSellPrice(),
+                quantity,
+                quantity * product.getSellPrice());
     }
 }

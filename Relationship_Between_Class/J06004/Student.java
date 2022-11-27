@@ -5,6 +5,7 @@ public class Student implements Comparable<Student> {
     private String studentName;
     private String phoneNumber;
     private int groupID;
+    private Group group;
 
     public Student(String studentID, String studentName, String phoneNumber, int groupID) {
         this.studentID = studentID;
@@ -17,13 +18,17 @@ public class Student implements Comparable<Student> {
         return groupID;
     }
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
     @Override
     public int compareTo(Student o) {
-        return this.studentID.compareTo(o.studentID) > 0 ? 1 : -1;
+        return studentID.compareTo(o.studentID) > 0 ? 1 : -1;
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %d", this.studentID, this.studentName, this.phoneNumber, this.groupID);
+        return studentID + " " + studentName + " " + phoneNumber +  " " + groupID + " " + group;
     }
 }
