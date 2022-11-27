@@ -3,9 +3,6 @@ package Input_Output_File.J07052;
 public class Examimee implements Comparable<Examimee> {
     private String examimeeID;
     private String examimeeName;
-    private double mathPoint;
-    private double physicsPoint;
-    private double chemistryPoint;
     private double priorPoint;
     private double totalPoint;
 //    private String status;
@@ -13,9 +10,6 @@ public class Examimee implements Comparable<Examimee> {
     public Examimee(String examimeeID, String examimeeName, double mathPoint, double physicsPoint, double chemistryPoint) {
         this.examimeeID = examimeeID;
         this.examimeeName = capitalize(examimeeName);
-        this.mathPoint = mathPoint;
-        this.physicsPoint = physicsPoint;
-        this.chemistryPoint = chemistryPoint;
         this.priorPoint = toPriorPoint(examimeeID);
         this.totalPoint = mathPoint * 2 + physicsPoint + chemistryPoint + this.priorPoint;
     }
@@ -25,10 +19,10 @@ public class Examimee implements Comparable<Examimee> {
     }
 
     public double toPriorPoint(String examimeeID) {
-        if (examimeeID.charAt(2) == '1')
+        if (examimeeID.startsWith("KV1"))
             return 0.5;
-        else if (examimeeID.charAt(2) == '2')
-            return 1;
+        else if (examimeeID.startsWith("KV2"))
+            return 1.0;
         return 2.5;
     }
 
@@ -55,7 +49,7 @@ public class Examimee implements Comparable<Examimee> {
 
     @Override
     public String toString() {
-        String result = this.examimeeID + " " + this.examimeeName +  " ";
+        String result = this.examimeeID + " " + this.examimeeName;
         if (this.priorPoint == (int) this.priorPoint)
             result += String.format("%.0f ", this.priorPoint);
         else

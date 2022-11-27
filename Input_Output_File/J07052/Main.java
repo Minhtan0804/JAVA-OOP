@@ -5,8 +5,8 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(new File("D:\\Kì I (2022-2023)\\Java-oop\\src\\Input_Output_File\\J07052\\THISINH.in"));
-//        Scanner sc = new Scanner(new File("THISINH.in"));
+//        Scanner sc = new Scanner(new File("D:\\Kì I (2022-2023)\\Java-oop\\src\\Input_Output_File\\J07052\\THISINH.in"));
+        Scanner sc = new Scanner(new File("THISINH.in"));
         int n = Integer.parseInt(sc.nextLine());
 
         ArrayList<Examimee> examimeeArrayList = new ArrayList<>();
@@ -16,19 +16,15 @@ public class Main {
         }
 
         int target = Integer.parseInt(sc.nextLine());
-        double benchmack = 0;
 
         Collections.sort(examimeeArrayList);
 
-        for (Examimee examimee : examimeeArrayList) {
-            if(--target == 0)
-                benchmack = examimee.getTotalPoint();
-        }
+        double benchmack = examimeeArrayList.get(target - 1).getTotalPoint();
 
         System.out.printf("%.1f\n", benchmack);
 
         for (Examimee examimee : examimeeArrayList) {
-            if (examimee.getTotalPoint() == benchmack)
+            if (examimee.getTotalPoint() >= benchmack)
                 System.out.println(examimee + "TRUNG TUYEN");
             else
                 System.out.println(examimee + "TRUOT");
