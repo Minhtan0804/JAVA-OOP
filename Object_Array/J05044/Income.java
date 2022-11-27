@@ -1,4 +1,4 @@
-package Object_Array.J05043;
+package Object_Array.J05044;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -45,6 +45,10 @@ public class Income {
             return (int) (Math.round((double) temp * 2 / 3 / 1000) * 1000);
         else
             return 25000;
+    }
+
+    public String getPosition() {
+        return position;
     }
 
     @Override

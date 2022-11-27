@@ -1,38 +1,24 @@
 package Object_Array.J05018;
 
-import java.util.Date;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StudentPoint implements Comparable<StudentPoint> {
     private static final AtomicInteger count = new AtomicInteger(0);
     private int ID;
     private String fullName;
-    private String fullPoint;
-    private float averagePoint;
+    private double averagePoint;
     public String rank;
 
 
 
-    public StudentPoint(String fullName, String fullPoint) {
+    public StudentPoint(String fullName, double averagePoint) {
         this.ID = count.incrementAndGet();
         this.fullName = fullName;
-        this.fullPoint = fullPoint;
-        this.averagePoint = toPoint(fullPoint);
+        this.averagePoint = averagePoint;
         this.rank = toRanhking(this.averagePoint);
     }
 
-    public float toPoint(String fullPoint) {
-        String[] point = fullPoint.split("\\s+");
-        double temp = 0;
-
-        for (String i : point)
-            temp += Float.valueOf(i);
-
-        temp += Float.valueOf(point[0]) + Float.valueOf(point[1]);
-        return (float) (Math.round(temp / 12 * 10.0) / 10.0);
-    }
-
-    public String toRanhking(float averagePoint) {
+    public String toRanhking(double averagePoint) {
         double point = averagePoint;
         if (point >= 9)
             return "XUAT SAC";
@@ -59,6 +45,9 @@ public class StudentPoint implements Comparable<StudentPoint> {
 
     @Override
     public String toString() {
-        return String.format("HS%02d %s %.1f %s", this.ID, this.fullName, this.averagePoint, this.rank);
+        return String.format("HS%02d ", this.ID) + " " + this.fullName + " " + this.averagePoint +  " " + this.rank;
     }
 }
+
+
+// (double) (Math.round(this.averagePoint * 10) / 10)

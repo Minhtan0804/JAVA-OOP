@@ -1,8 +1,8 @@
-package Object_Array.J05043;
+package Object_Array.J05045;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Income {
+public class Income implements Comparable<Income> {
     private static final AtomicInteger count = new AtomicInteger(0);
     private String ID;
     private String fullName;
@@ -13,6 +13,7 @@ public class Income {
     private int salary;
     private int advance;
     private int remain;
+    private int incomee;
 
     public Income(String fullName, String position, int basicSalary, int workDays) {
         this.ID = String.format("NV%02d", count.incrementAndGet());
@@ -24,6 +25,7 @@ public class Income {
         this.salary = basicSalary * workDays;
         this.advance = toAdvance(salary, this.posAllowance);
         this.remain = this.salary + this.posAllowance - this.advance;
+        this.incomee = this.salary + this.posAllowance;
     }
 
     public int toAllowancce(String position) {
@@ -45,6 +47,16 @@ public class Income {
             return (int) (Math.round((double) temp * 2 / 3 / 1000) * 1000);
         else
             return 25000;
+    }
+
+    @Override
+    public int compareTo(Income o) {
+        if (this.incomee < o.incomee)
+            return 1;
+        else if (this.incomee == o.incomee && this.ID.compareTo(o.ID) > 0)
+            return 1;
+
+        return -1;
     }
 
     @Override
